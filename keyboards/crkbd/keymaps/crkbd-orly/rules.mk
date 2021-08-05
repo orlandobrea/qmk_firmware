@@ -1,0 +1,6 @@
+OLED_DRIVER_ENABLE  = yes
+RGB_MATRIX_ENABLE = yes
+NKRO_ENABLE = yes
+RGBLIGHT_ENABLE = no
+MOUSEKEY_ENABLE  = no
+#SRC += ./logo_reader.c
