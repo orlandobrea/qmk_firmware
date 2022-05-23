@@ -23,9 +23,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
   #include "lufa.h"
   #include "split_util.h"
 #endif
-#ifdef SSD1306OLED
-  #include "ssd1306.h"
-#endif
 
 // static uint32_t oled_timer = 0;
 
@@ -259,13 +256,9 @@ void read_usb_state(void) {
 
 }
 
-void oled_task_user(void) {
-  /* if (timer_elapsed32(oled_timer) > OLED_TIMEOUT) {
-      oled_off();
-      return;
-  } else { */
-      oled_on();
-  // }
+#ifdef OLED_ENABLE
+bool oled_task_user(void) {
+  oled_on();
   if (is_keyboard_master()) {
     oled_write_ln_P(PSTR("Default"), false);
     read_layer_state();
@@ -274,4 +267,6 @@ void oled_task_user(void) {
   } else {
     oled_render_logo();
   }
+  return false;
 }
+#endif

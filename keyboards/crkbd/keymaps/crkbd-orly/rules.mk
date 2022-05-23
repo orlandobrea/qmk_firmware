@@ -11,7 +11,8 @@ UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 RGBLIGHT_ENABLE = no        # Enable WS2812 RGB underlight.
 SWAP_HANDS_ENABLE = no      # Enable one-hand typing
-OLED_DRIVER_ENABLE  = yes
+OLED_ENABLE  = yes
+OLED_DRIVER = SSD1306
 SPLIT_KEYBOARD = yes
 
 # If you want to change the display of OLED, you need to change here
