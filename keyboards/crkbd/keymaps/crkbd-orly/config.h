@@ -27,12 +27,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MASTER_LEFT
 // #define MASTER_RIGHT
 // #define EE_HANDS
-#undef USE_I2C
-#undef SSD1306OLED
+/* #define SSD1306OLED */
+/* #define USE_SSD_I2C */
 
+#define USE_SERIAL_PD2
 /* #define USE_SERIAL_PD2 */
 
-#define CUSTOM_FONT
+/* #define CUSTOM_FONT */
 
 #define CUSTOM_LAYER_READ //if you remove this it causes issues - needs better guarding 
 
@@ -40,6 +41,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TAPPING_TERM 150
 #define RETRO_TAPPING
 #define IGNORE_MOD_TAP_INTERRUPT
+#define OLED_TIMEOUT 9000 
 
 
 #ifdef RGBLIGHT_ENABLE
@@ -51,5 +53,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
     #define RGBLIGHT_SAT_STEP 17
     #define RGBLIGHT_VAL_STEP 17
 #endif
-
-#define OLED_FONT_H "keyboards/crkbd/keymaps/crkbd-orly/glcdfont.c"
+#define OLED_FONT_H "keyboards/crkbd/lib/glcdfont.c"
