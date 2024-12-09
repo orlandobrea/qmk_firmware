@@ -19,6 +19,7 @@ SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE = no 
 MAGIC_ENABLE = no
 MUSIC_ENABLE = yes
+RGB_MATRIX_ENABLE = yes
 
 
 # If you want to change the display of OLED, you need to change here

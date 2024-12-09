@@ -42,6 +42,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define VOL_UP KC_KB_VOLUME_UP
 #define VOL_DW KC_KB_VOLUME_DOWN
 #define VOL_MUTE KC_KB_MUTE
+#define SEL_ALL G(KC_A)
+#define COPY G(KC_C)
+#define PASTE G(KC_V)
+#define CUT G(KC_X)
 
 // Each layer gets a name for readability, which is then used in the keymap matrix below.
 // The underscores don't mean anything - you can have a layer called STUFF or any other name.
@@ -70,14 +74,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
   [_LOWER] = LAYOUT_split_3x6_3( \
-  //,-----------------------------------------------------.    ,-----------------------------------------------------------------.
-     QK_BOOTLOADER, _______, KC_LT,  KC_GT,  _______, KC_LCBR,           KC_RCBR, KC_PGUP, KC_UP,   _______, _______, _______,\
-  //|--------+--------+--------+--------+--------+--------|     |--------+--------+--------+--------+--------+-------------------|
-     _______,   UNDO  ,  REDO  , MS_BTN2, MIC_TGL, KC_LPRN,          KC_RPRN, KC_LEFT, KC_DOWN, KC_RIGHT, _______, _______,\
-  //|--------+--------+--------+--------+--------+--------|     |--------+--------+--------+--------+--------+-------------------|
-     _______, G(KC_A), G(KC_C), G(KC_V), G(KC_X), KC_LBRC,         KC_RBRC, KC_PGDN, _______, KC_HOME, KC_END, _______,\
-  //|--------+--------+--------+--------+--------+--------|     |--------+--------+--------+--------+--------+-------------------|
-                                _______, _______, _______,        _______, _______, _______ \
+    C(KC_RIGHT), LCAG(KC_LEFT), LCAG(KC_DOWN), LCAG(KC_UP), LCAG(KC_RIGHT), KC_LPRN,           KC_RPRN, KC_PGUP, KC_UP,   KC_PGDN, _______, _______,\
+    C(KC_LEFT),  UNDO,          REDO,          MS_BTN2,     MIC_TGL,       KC_LBRC,           KC_RBRC, KC_LEFT, KC_DOWN, KC_RIGHT, _______, _______,\
+    _______,     CUT,           COPY,          PASTE,       SEL_ALL,       KC_LCBR,           KC_RCBR, KC_HOME, KC_END,  _______,  _______, _______,\
+                  QK_BOOTLOADER, _______,     KC_PWR,        _______,           _______, _______ \
                              //`----------XXXXX----------'  `----------------------'
 
   ),
@@ -89,6 +89,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______ , TMUX      , LALT(KC_1) , LALT(KC_2), LALT(KC_3), LALT(KC_4),     KC_MINS , KC_EQL  , KC_BSLS , KC_LBRC , KC_RBRC , KC_MINS , \
     _______ , LALT(KC_5), LALT(KC_6) , LALT(KC_7), LALT(KC_8), LALT(KC_9),     KC_LT   , KC_GT   , KC_PIPE , KC_LCBR , KC_RCBR , _______ , \
                                             _______,_______,_______,            _______ ,_______,_______ \
+                                         //`------------------------'          `---------XXXXXXX--------'
+
   ),
 
   [_ADJUST] = LAYOUT_split_3x6_3( \
@@ -96,6 +98,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_WAKE ,  _______ ,  VOL_MUTE ,  KC_MPLY ,  _______ ,  _______ ,           KC_F14 ,  KC_F4 ,  KC_F5 ,  KC_F6 ,  KC_F11 ,  _______ ,\
      _______ ,  _______ ,  VOL_DW ,  KC_MPRV ,  _______ ,  KC_BRID ,           KC_F15 ,  KC_F1 ,  KC_F2 ,  KC_F3 ,  KC_F12 ,  _______ ,\
                                             _______,_______,_______,            _______ ,_______,_______ \
+                                         //`--------XXXXXXX---------'          `---------XXXXXXX--------'
+
   ),
 
 [_NUMBERS] = LAYOUT_split_3x6_3( \
@@ -192,7 +196,8 @@ char matrix_line_str[24];
 const char *read_layer_state(void) {
   uint8_t layer = biton32(layer_state);
 
-  oled_write_P(PSTR("Layer: "), false);
+  
+  oled_write_ln_P(PSTR("Layer: "), false);
   switch (layer)
   {
     case _DVORAK:
