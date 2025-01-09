@@ -76,13 +76,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_LOWER] = LAYOUT_split_3x6_3( \
     C(KC_RIGHT), LCAG(KC_LEFT), LCAG(KC_DOWN), LCAG(KC_UP), LCAG(KC_RIGHT), KC_LPRN,           KC_RPRN, KC_PGUP, KC_UP,   KC_PGDN, _______, _______,\
     C(KC_LEFT),  UNDO,          REDO,          MS_BTN2,     MIC_TGL,       KC_LBRC,           KC_RBRC, KC_LEFT, KC_DOWN, KC_RIGHT, _______, _______,\
-    _______,     CUT,           COPY,          PASTE,       SEL_ALL,       KC_LCBR,           KC_RCBR, KC_HOME, KC_END,  _______,  _______, _______,\
-                  QK_BOOTLOADER, _______,     KC_PWR,        _______,           _______, _______ \
+    QK_BOOTLOADER,     CUT,           COPY,          PASTE,       SEL_ALL,       KC_LCBR,           KC_RCBR, KC_HOME, KC_END,  _______,  _______, _______,\
+                 _______ , _______,     _______,        _______,           _______, _______ \
                              //`----------XXXXX----------'  `----------------------'
 
   ),
 
-  // 
+  //
 
   [_RAISE] = LAYOUT_split_3x6_3( \
     KC_TILD , KC_EXLM   , KC_AT      , KC_HASH   , KC_DLR    , KC_PERC ,       KC_CIRC , KC_AMPR , KC_ASTR , KC_LPRN , KC_RPRN , KC_BSLS , \
@@ -94,8 +94,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
 
   [_ADJUST] = LAYOUT_split_3x6_3( \
-     QK_BOOTLOADER   ,  _______ ,  VOL_UP ,  KC_MNXT ,  _______ ,  KC_BRIU ,           KC_F13 ,  KC_F7 ,  KC_F8 ,  KC_F9 ,  KC_F10 ,  _______ ,\
-     KC_WAKE ,  _______ ,  VOL_MUTE ,  KC_MPLY ,  _______ ,  _______ ,           KC_F14 ,  KC_F4 ,  KC_F5 ,  KC_F6 ,  KC_F11 ,  _______ ,\
+     KC_WAKE   ,  _______ ,  VOL_UP ,  KC_MNXT ,  _______ ,  KC_BRIU ,           KC_F13 ,  KC_F7 ,  KC_F8 ,  KC_F9 ,  KC_F10 ,  _______ ,\
+     _______ ,  _______ ,  VOL_MUTE ,  KC_MPLY ,  _______ ,  _______ ,           KC_F14 ,  KC_F4 ,  KC_F5 ,  KC_F6 ,  KC_F11 ,  _______ ,\
      _______ ,  _______ ,  VOL_DW ,  KC_MPRV ,  _______ ,  KC_BRID ,           KC_F15 ,  KC_F1 ,  KC_F2 ,  KC_F3 ,  KC_F12 ,  _______ ,\
                                             _______,_______,_______,            _______ ,_______,_______ \
                                          //`--------XXXXXXX---------'          `---------XXXXXXX--------'
@@ -196,7 +196,7 @@ char matrix_line_str[24];
 const char *read_layer_state(void) {
   uint8_t layer = biton32(layer_state);
 
-  
+
   oled_write_ln_P(PSTR("Layer: "), false);
   switch (layer)
   {
